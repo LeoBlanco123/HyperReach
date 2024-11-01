@@ -3,45 +3,51 @@
 
 # Sumário
 [Introdução](#introdução)  
-[Integrantes](#integrantes)  
 [Como rodar a aplicação](#como-rodar-a-aplicação)  
 [Diagramas](#diagramas)  
 [Link do Video](#link-do-video)
 
 # Introdução
 
-O Nosso objetivo é desenvolver uma solução de IA de hiper personalização para campanhas de marketing, visando transformar a comunicação das empresas com seus clientes. A proposta é utilizar coleta e análise de dados detalhados para atingir três objetivos principais:
+## Objetivo do Projeto
 
-    Segmentação de Empresas: A solução emprega modelos de aprendizado de máquina, como Árvores de Decisão ou K-Means Clustering, para agrupar empresas com base em características e comportamentos similares. Isso permite criar campanhas altamente personalizadas.
+Estamos desenvolvendo uma solução inovadora de inteligência artificial voltada para a hiperpersonalização de campanhas de marketing, com o intuito de transformar a comunicação entre empresas e seus clientes. Nossa proposta é utilizar a coleta e análise detalhada de dados para alcançar dois objetivos principais:
 
-    Análise de Feedback e Identificação de Gastos: Por meio de técnicas como Redes Neurais Recorrentes (RNNs) e análise de séries temporais, a solução analisa feedback e interações para identificar padrões de comportamento e preferências, além de identificar tendências de gastos das empresas.
+### 1. Segmentação de Empresas
 
-Essas funcionalidades contribuem para melhorar a eficácia das campanhas de marketing, aumentar a probabilidade de conversão e aprimorar a experiência do cliente. O sistema é composto por um back-end em Java para processamento e análise de dados, alimentando os modelos de IA, e um front-end mobile em ReactNative para interação dos usuários e visualização das campanhas personalizadas.
+A solução implementa modelos avançados de aprendizado de máquina, como Árvores de Decisão e K-Means Clustering, para agrupar empresas com base em características e comportamentos semelhantes. Isso possibilita a criação de campanhas altamente personalizadas, direcionadas às necessidades específicas de cada grupo.
 
-A solução proposta preenche uma lacuna no mercado ao combinar análise de dados com personalização em larga escala, prometendo revolucionar a comunicação empresa-cliente. Com um público-alvo definido e tecnologias modernas integradas, espera-se não apenas atender aos objetivos do projeto, mas também aprimorar continuamente a experiência do cliente e a eficácia das campanhas de marketing.
+### 2. Análise de Feedback e Identificação de Gastos
 
-# Integrantes
+Utilizando técnicas como Redes Neurais Recorrentes (RNNs) e análise de séries temporais, nossa solução analisa feedbacks e interações dos clientes para identificar padrões de comportamento e preferências, além de mapear tendências de gastos das empresas.
 
-### Leonardo Blanco – rm99119
-Ficou responsavel por Java
+## Benefícios
 
-### Leonardo Yuuki – rm550373
-Ficou responsavel por fazer Kotlin e Devops
+Essas funcionalidades visam não apenas melhorar a eficácia das campanhas de marketing, mas também aumentar as taxas de conversão e aprimorar a experiência do cliente. O sistema será composto por:
 
-### Gustavo Moreira - rm97999
-Ficou responsavel por fazer QA
+- **Back-end**: Desenvolvido em Java para processamento e análise de dados, mas tambem usando ThymeLeaf para deixar a aplicação FullStack.
+- **Front-end**: Aplicação mobile em React Native e Kotlin, proporcionando uma interação intuitiva e uma visualização dinâmica das campanhas personalizadas.
 
-### Paulo Henrique – rm98082
-Ficou responsavel por PLSQL e IOT
+## Diferenciais
 
-### Daniel Soares -rm552184
-Ficou responsavel por C#
+Esta solução preenche uma lacuna no mercado ao integrar análise de dados com personalização em larga escala, prometendo revolucionar a comunicação entre empresas e clientes. Com um público-alvo bem definido e a adoção de tecnologias modernas, nosso projeto não só atende aos objetivos propostos, mas também se compromete a aprimorar continuamente a experiência do cliente e a eficácia das campanhas de marketing.
 
 # Como rodar a aplicação
 
-SRC > MAIN > JAVA > BR.COM.FIAP.CHALLENGE3 > Challenge3Application  
-Rodar a aplicação atraves do 'Challenge3Application', entrar no navegador e 
-escrever "localhost:8080/empresas" para rodar na Web.
+## Instruções para Rodar a Aplicação
+### 1. Executar a Aplicação
+- Navegue até o diretório: SRC > MAIN > JAVA > BR.COM.FIAP.CHALLENGE3
+- Execute a aplicação através da classe `Challenge3Application`.
+### 2. Acessar a Aplicação Web
+- Abra o seu navegador e digite a seguinte URL:
+- http://localhost:8080/empresas
+### 3. Configurações Necessárias
+- Certifique-se de configurar o arquivo `application.properties` com as informações do seu banco de dados e o token do Spring AI.
+### 4. Rodar a Mensageria
+- Para iniciar o RabbitMQ, abra o Prompt de Comando (CMD) como administrador.
+- Execute o seguinte comando (certifique-se de que o Docker Desktop está aberto e instalado):   
+```docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management```
+
 
 # Diagramas
 
