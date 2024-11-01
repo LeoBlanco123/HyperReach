@@ -1,0 +1,13 @@
+<div th:fragment="idioma(pagina)">
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="dropdown-item">Sair</button>
+    </form>
+    <a th:href="@{__${pagina}__ (lang='pt')}" class="dropdown-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/206/206597.png" alt="Português" style="width: 30px; height: 30px; margin-right: 5px;" />
+        <span th:text="#{fragment.br}"></span>
+    </a>
+    <a th:href="@{__${pagina}__ (lang='en')}" class="dropdown-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/206/206626.png" alt="Inglês" style="width: 30px; height: 30px; margin-right: 5px;" />
+        <span th:text="#{fragment.en}"></span>
+    </a>
+</div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title th:text="#{tela.login}"> Tela de Login</title>
+	<link rel="stylesheet" href="/css/Login/login.css">
+</head>
+
+<body>
+<div class="container">
+	<div class="login-form">
+		<h1 th:text="#{welcome}"></h1>
+		<form th:action="@{/login}" method="post">
+			<label for="username" th:text="#{login}"></label>
+			<input type="text" id="username" name="username" th:placeholder="#{placeholder.username}">
+
+			<label for="password" th:text="#{password}"></label>
+			<input type="password" id="password" name="password" th:placeholder="#{placeholder.password}">
+
+			<div th:if="${param.erro}" class="error-message">
+				<span th:text="#{error}"></span>
+			</div>
+
+			<div th:if="${param.logout}" class="success-message">
+				<span th:text="#{logout}"></span>
+			</div>
+
+			<div class="form-group">
+				<input id="remember-me" name="remember-me" type="checkbox" class="form-control">
+				<label for="remember-me" th:text="#{rememberMe}"></label>
+			</div>
+
+			<button type="submit" th:text="#{enter}"></button>
+
+			<div class="signup-link">
+				<span th:text="#{signupLink}"></span>
+				<a href="/novo_usuario" th:text="#{signupAction}"></a>
+			</div>
+		</form>
+	</div>
+
+	<div class="image-container">
+		<img src="/assets/logo.png" alt="Hyper Reach Logo" />
+	</div>
+
+</div>
+</body>
+
+</html>

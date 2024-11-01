@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/Detalhes_Empresa/detalhes_empresas.css">
+</head>
+
+<script>
+    function confirmarRemocao1() {
+        const message = document.getElementById('confirmMessage1').innerText;
+        return confirm(message);
+    }
+    function confirmarRemocao2() {
+        const message = document.getElementById('confirmMessage2').innerText;
+        return confirm(message);
+    }
+    function confirmarRemocao3() {
+        const message = document.getElementById('confirmMessage3').innerText;
+        return confirm(message);
+    }
+    function confirmarRemocao4() {
+        const message = document.getElementById('confirmMessage4').innerText;
+        return confirm(message);
+    }
+</script>
+
+
+<body>
+<div class="container">
+    <h1 class="center-align" th:text="#{details.title}"></h1>
+
+    <!-- Informações Gerais -->
+    <div class="card info-geral">
+        <div class="card-content">
+            <span class="card-title">
+                <i class="material-icons left">info_outline</i>
+                <strong th:text="#{general_info}">Informações Gerais</strong>
+            </span>
+            <div class="info-row">
+                <strong th:text="#{general_info.nome}">Nome:</strong> <span th:text="${empresa.nome}"></span>
+            </div>
+            <div class="info-row">
+                <strong th:text="#{general_info.tamanho}">Tamanho:</strong> <span th:text="#{${empresa.tamanho.messageKey}}"></span>
+            </div>
+            <div class="info-row">
+                <strong th:text="#{general_info.setor}">Setor:</strong> <span th:text="#{${empresa.setor.messageKey}}"></span>
+            </div>
+            <div class="info-row">
+                <strong th:text="#{general_info.localizacao}">Localização:</strong> <span th:text="${empresa.localizacaoGeografica}"></span>
+            </div>
+            <div class="info-row">
+                <strong th:text="#{general_info.num_funcionarios}">Número de Funcionários:</strong> <span th:text="${empresa.numeroFuncionarios}"></span>
+            </div>
+            <div class="info-row">
+                <strong th:text="#{general_info.tipo_empresa}">Tipo de Empresa:</strong> <span th:text="#{${empresa.tipoEmpresa.descricao}}"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tendências de Gastos e Desempenho Financeiro -->
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">
+                        <i class="material-icons left">assessment</i>
+                        <strong th:text="#{gastos.titulo}">Tendências de Gastos</strong>
+                    </span>
+                    <div class="row" th:each="tendencia : ${empresa.tendencias}">
+                        <div class="col s12">
+                            <div class="card small blue-grey lighten-4">
+                                <div class="card-content">
+                                    <div class="info-row">
+                                        <strong th:text="#{gastos.ano}">Ano:</strong> <span th:text="${tendencia.ano}"></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <strong th:text="#{gastos.marketing}">Gasto em Marketing:</strong> <span th:text="${tendencia.gastoMarketing}"></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <strong th:text="#{gastos.automacao}">Gasto em Automação:</strong> <span th:text="${tendencia.gastoAutomacao}"></span>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <div>
+                                        <a class="btn-small orange" th:href="@{/tendencias/{id}/editar(id=${tendencia.id})}" th:text="#{gastos.editar}">Editar</a>
+                                    </div>
+                                    <div>
+                                        <form th:action="@{/tendencias/{id}/remover(id=${tendencia.id})}" method="post">
+                                            <span id="confirmMessage1" th:text="#{teste}" style="display: none;"></span>
+                                            <button type="submit" class="btn-small red" th:text="#{index.remove}" onclick="return confirmarRemocao1();">Remover</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn green" th:if="${showCreateButtonTendencia}" th:href="@{/tendencias/nova(idEmpresa=${empresa.id})}" th:text="#{gastos.criar_nova}">Criar Nova Tendência de Gastos</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">
+                        <i class="material-icons left">trending_up</i>
+                        <strong th:text="#{financeiro.titulo}">Desempenho Financeiro</strong>
+                    </span>
+                    <div class="row" th:each="desempenho : ${empresa.desempenhos}">
+                        <div class="col s12">
+                            <div class="card small yellow lighten-4">
+                                <div class="card-content">
+                                    <div class="info-row">
+                                        <strong th:text="#{financeiro.receita}">Receita:</strong> <span th:text="${desempenho.receita}"></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <strong th:text="#{financeiro.lucro}">Lucro:</strong> <span th:text="${desempenho.lucro}"></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <strong th:text="#{financeiro.crescimento}">Crescimento:</strong> <span th:text="${desempenho.crescimento}"></span>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <div>
+                                        <a class="btn-small orange" th:href="@{/desempenho/{id}/editar(id=${desempenho.id})}" th:text="#{financeiro.editar}">Editar</a>
+                                    </div>
+                                    <div>
+                                        <form th:action="@{/desempenho/{id}/remover(id=${desempenho.id})}" method="post" >
+                                            <span id="confirmMessage2" th:text="#{teste}" style="display: none;"></span>
+                                            <button type="submit" class="btn-small red" th:text="#{index.remove}" onclick="return confirmarRemocao2();">Remover</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn green" th:if="${showCreateButtonDesempenho}" th:href="@{/desempenho/novo(idEmpresa=${empresa.id})}" th:text="#{financeiro.criar_novo}">Criar Novo Desempenho Financeiro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Histórico de Interações e Comportamento de Negócios -->
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">
+                        <i class="material-icons left">history</i>
+                        <strong th:text="#{historico.titulo}">Histórico de Interações</strong>
+                    </span>
+                    <div class="row" th:each="historico : ${empresa.historicos}">
+                        <div class="col s12">
+                            <div class="card small teal lighten-4">
+                                <div class="card-content">
+                                    <div class="info-row">
+                                        <strong th:text="#{historico.proposta}">Proposta de Negócio:</strong> <span th:text="${historico.propostaNegocio}"></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <strong th:text="#{historico.contrato}">Contrato Assinado:</strong> <span th:text="#{${historico.contratoAssinado}}"></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <strong th:text="#{historico.feedback}">Feedback:</strong> <span th:text="${historico.feedbackServicosProdutos}"></span>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <div>
+                                        <a class="btn-small orange" th:href="@{/historico/{id}/editar(id=${historico.id})}" th:text="#{historico.editar}">Editar</a>
+                                    </div>
+                                    <div>
+                                        <form th:action="@{/historico/{id}/remover(id=${historico.id})}" method="post">
+                                            <span id="confirmMessage3" th:text="#{teste}" style="display: none;"></span>
+                                            <button type="submit" class="btn-small red" th:text="#{index.remove}" onclick="return confirmarRemocao3();">Remover</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn green" th:if="${showCreateButtonHistorico}" th:href="@{/historico/novo(idEmpresa=${empresa.id})}" th:text="#{historico.criar_novo}">Criar Novo Histórico de Interação</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">
+                        <i class="material-icons left">business_center</i>
+                        <strong th:text="#{negocios.titulo}">Comportamento de Negócios</strong>
+                    </span>
+                    <div class="row" th:each="comportamento : ${empresa.comportamentos}">
+                        <div class="col s12">
+                            <div class="card small light-green lighten-4">
+                                <div class="card-content">
+                                    <div class="info-row">
+                                        <strong th:text="#{negocios.interacoes}">Interações na Plataforma:</strong> <span th:text="${comportamento.interacoesPlataforma}"></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <strong th:text="#{negocios.frequencia}">Frequência de Uso:</strong> <span th:text="${comportamento.frequenciaUso}"></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <strong th:text="#{negocios.feedback}">Feedback:</strong> <span th:text="${comportamento.feedback}"></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <strong th:text="#{negocios.uso_recursos}">Uso de Recursos Específicos:</strong> <span th:text="#{${comportamento.usoRecursosEspecificos.chave}}"></span>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <div>
+                                        <a class="btn-small orange" th:href="@{/comportamento/{id}/editar(id=${comportamento.id})}" th:text="#{negocios.editar}">Editar</a>
+                                    </div>
+                                    <div>
+                                        <form th:action="@{/comportamento/{id}/remover(id=${comportamento.id})}" method="post">
+                                            <span id="confirmMessage4" th:text="#{teste}" style="display: none;"></span>
+                                            <button type="submit" class="btn-small red" th:text="#{index.remove}" onclick="return confirmarRemocao4();">Remover</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn green" th:if="${showCreateButtonComportamento}" th:href="@{/comportamento/novo(idEmpresa=${empresa.id})}" th:text="#{negocios.criar_novo}">Criar Novo Comportamento de Negócios</a>
+                </div>
+            </div>
+        </div>
+        <a class="btn btn-small" th:href="@{/empresas}" th:text="#{button.voltar}">Voltar</a>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

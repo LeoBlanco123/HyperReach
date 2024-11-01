@@ -1,0 +1,20 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="#{acesso.negado}">Acesso Negado</title>
+    <link rel="stylesheet" href="/css/Acesso_Negado/acesso_negado.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="icon">🚫</div>
+    <h1 th:text="#{acesso.negado}">Acesso Negado</h1>
+    <p th:text="#{acesso.texto}">Desculpe, você não tem permissão para acessar esta página.</p>
+    <a th:href="@{/empresas}" th:text="#{acesso.voltar}">Voltar à Página Principal</a>
+</div>
+</body>
+
+</html>
