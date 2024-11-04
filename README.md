@@ -58,4 +58,4 @@ Esta solução preenche uma lacuna no mercado ao integrar análise de dados com 
 ![arquitetura.png](documentacao%2Fdiagrama-classes%2Farquitetura.png)
 
 # Link do Video
-[https://www.youtube.com/watch?v=V7Ntv5wPsF0](https://www.youtube.com/watch?v=Wb2HLcZJjNk)
+[https://www.youtube.com/watch?v=V7Ntv5wPsF0](https://www.youtube.com/watch?v=xUIjLxIGb3w)
